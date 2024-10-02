@@ -203,6 +203,18 @@ test('special franchise screen', async ({ page }) => {
         expect(route.request().method()).toBe('GET');
         await route.fulfill({ json: franchiseRes });
     })
+    await page.route('*/**/api/frachise/2/store', async (route) => {
+        const storeReq = { name: 'Lehi' };
+        const storeRes = { id: 21, franchiseId: 2, name: 'Lehi' };
+        expect(route.request().method()).toBe('POST');
+        expect(route.request().postDataJSON()).toMatchObject(storeReq);
+        await route.fulfill({ json: storeRes });
+    })
+});
 
 
-})
+test('fake page', async ({ page }) => {
+    await page.goto('http://localhost:5173/thisisnotarealpagelol');
+    await expect(page.getByRole('main')).toContainText('It looks like we have dropped a pizza on the floor. Please try another page.');
+    await expect(page.getByRole('heading')).toContainText('Oops');
+});
