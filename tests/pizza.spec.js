@@ -253,3 +253,67 @@ test('docs page', async ({ page }) => {
     await expect(page.getByText('{ "id": 1, "name": "常用名字", "').nth(1)).toBeVisible();
     await expect(page.getByRole('main')).toContainText('curl localhost:3000/api/order/menu');
 });
+
+test('admin dashboard', async ({ page }) => {
+    await page.route('*/**/api/auth', async (route) => {
+        const loginReq = { email: 'ilovejessie@jwt.com', password: 'admindude' };
+        const loginResp = {
+            "user": {
+                "id": 2,
+                "name": "woody",
+                "email": "ilovejessie@jwt.com",
+                "roles": [
+                    {
+                        "role": "admin"
+                    }
+                ]
+            },
+            "token": "buzzlightyear"
+        };
+        expect(route.request().method()).toBe('PUT');
+        expect(route.request().postDataJSON()).toMatchObject(loginReq);
+        await route.fulfill({ json: loginResp });
+    });
+    await page.goto('http://localhost:5173/');
+    await page.getByRole('link', { name: 'Login' }).click();
+    await page.getByPlaceholder('Email address').fill('ilovejessie@jwt.com');
+    await page.getByPlaceholder('Password').click();
+    await page.getByPlaceholder('Password').fill('admindude');
+    await page.getByRole('button', { name: 'Login' }).click();
+    await page.getByRole('link', { name: 'Admin' }).click();
+});
+
+test('diner dash', async ({ page }) => {
+    await page.route('*/**/api/auth', async (route) => {
+
+        const loginReq = { email: 'joe@joe.com', password: 'joe' };
+        const loginResp = {
+            "user": {
+                "id": 2,
+                "name": "joe",
+                "email": "joe@joe.com",
+                "roles": [
+                    {
+                        "role": "diner"
+                    }
+                ]
+            },
+            "token": "buzzlightyear"
+        };
+
+        expect(route.request().method()).toBe('PUT');
+        expect(route.request().postDataJSON()).toMatchObject(loginReq);
+        await route.fulfill({ json: loginResp });
+    });
+
+    await page.goto('http://localhost:5173/');
+    await page.getByRole('link', { name: 'Login' }).click();
+    await page.getByPlaceholder('Email address').fill('joe@joe.com');
+    await page.getByPlaceholder('Email address').press('Tab');
+    await page.getByPlaceholder('Password').fill('joe');
+    await page.getByRole('button', { name: 'Login' }).click();
+    await expect(page.getByRole('link', { name: 'j' })).toBeVisible();
+    await page.getByRole('link', { name: 'j' }).click();
+    await expect(page.getByRole('heading')).toContainText('Your pizza kitchen');
+
+});
