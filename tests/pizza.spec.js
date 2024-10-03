@@ -100,6 +100,13 @@ test('purchase with login', async ({ page }) => {
 });
 
 test('register', async ({ page }) => {
+    await page.route('*/**/api/auth', async (route) => {
+        const registerReq = { name: 'joe', email: 'joe@joe.com', password: 'joe' };
+        const registerRes = { user: { id: 3, name: 'joe', email: 'joe@joe.com', roles: [{ role: 'diner' }] } };
+        expect(route.request().method()).toBe('POST');
+        expect(route.request().postDataJSON()).toMatchObject(registerReq);
+        await route.fulfill({ json: registerRes });
+    });
     await page.goto('http://localhost:5173/');
     await expect(page.getByRole('main')).toContainText('Pizza is an absolute delight that brings joy to people of all ages. The perfect combination of crispy crust, savory sauce, and gooey cheese makes pizza an irresistible treat. At JWT Pizza, we take pride in serving the web\'s best pizza, crafted with love and passion. Our skilled chefs use only the finest ingredients to create mouthwatering pizzas that will leave you craving for more. Whether you prefer classic flavors or adventurous toppings, our diverse menu has something for everyone. So why wait? Indulge in the pizza experience of a lifetime and visit JWT Pizza today!');
     await expect(page.getByRole('heading')).toContainText('The web\'s best pizza');
@@ -112,8 +119,7 @@ test('register', async ({ page }) => {
     await page.getByRole('main').getByText('Register').click();
     await page.getByPlaceholder('Full name').fill('joe');
     await page.getByPlaceholder('Email address').click();
-    const randomString = Math.random().toString(36).substring(2, 7);
-    const email = `user_${randomString}@email.com`;
+    const email = `joe@joe.com`;
     await page.getByPlaceholder('Email address').fill(email);
     // await page.getByPlaceholder('Email address').fill('joe@joe.com');
     await page.getByPlaceholder('Password').click();
@@ -123,22 +129,6 @@ test('register', async ({ page }) => {
     await page.getByRole('button', { name: 'Register' }).click();
 })
 
-test('franchise page', async ({ page }) => {
-    await page.goto('http://localhost:5173/');
-    await page.getByLabel('Global').getByRole('link', { name: 'Franchise' }).click();
-    await page.getByText('Call now800-555-').click();
-    await expect(page.getByRole('main')).toContainText('Call now800-555-5555');
-    await expect(page.getByRole('main')).toContainText('So you want a piece of the pie?');
-    await expect(page.getByRole('main').locator('img')).toBeVisible();
-    await page.getByRole('link', { name: 'History' }).click();
-    await expect(page.getByRole('heading')).toContainText('Mama Rucci, my my');
-    await expect(page.getByRole('contentinfo')).toContainText('Franchise');
-    await expect(page.getByRole('contentinfo').getByRole('link', { name: 'Franchise' })).toBeVisible();
-    await page.getByRole('contentinfo').getByRole('link', { name: 'Franchise' }).click();
-    await page.getByLabel('Global').getByRole('img').click();
-    await page.getByText('JWT Pizza', { exact: true }).click();
-    await page.getByRole('link', { name: 'home' }).click();
-});
 
 test('logout', async ({ page }) => {
     await page.route('*/**/api/auth', async (route) => {
@@ -236,4 +226,30 @@ test('fake page', async ({ page }) => {
     await expect(page.getByRole('heading')).toContainText('Oops');
 });
 
-// test('',)
+test('about page', async ({ page }) => {
+    await page.goto('http://localhost:5173/');
+    await expect(page.getByRole('contentinfo')).toContainText('About');
+    await expect(page.getByRole('link', { name: 'About' })).toBeVisible();
+    await page.getByRole('link', { name: 'About' }).click();
+    await expect(page.getByRole('main')).toContainText('The secret sauce');
+    await expect(page.getByRole('main').getByRole('img').first()).toBeVisible();
+    await expect(page.getByRole('main')).toContainText('Our talented employees at JWT Pizza are true artisans. They pour their heart and soul into every pizza they create, striving for perfection in every aspect. From hand-stretching the dough to carefully layering the toppings, they take pride in their work and are constantly seeking ways to elevate the pizza-making process. Their creativity and expertise shine through in every slice, resulting in a pizza that is not only delicious but also a work of art. We are grateful for our dedicated team and their unwavering commitment to delivering the most flavorful and satisfying pizzas to our valued customers.');
+});
+
+test('history page', async ({ page }) => {
+    await page.goto('http://localhost:5173/');
+    await expect(page.getByRole('link', { name: 'History' })).toBeVisible();
+    await expect(page.getByRole('contentinfo')).toContainText('History');
+    await page.getByRole('link', { name: 'History' }).click();
+    await expect(page.getByRole('heading')).toContainText('Mama Rucci, my my');
+    await expect(page.getByRole('main').getByRole('img')).toBeVisible();
+});
+
+test('docs page', async ({ page }) => {
+    await page.goto('http://localhost:5173/docs');
+    await expect(page.getByRole('main')).toContainText('JWT Pizza API');
+    await expect(page.getByText('{ "user": { "id": 2, "name')).toBeVisible();
+    await expect(page.getByText('{ "user": { "id": 1, "name')).toBeVisible();
+    await expect(page.getByText('{ "id": 1, "name": "常用名字", "').nth(1)).toBeVisible();
+    await expect(page.getByRole('main')).toContainText('curl localhost:3000/api/order/menu');
+});
