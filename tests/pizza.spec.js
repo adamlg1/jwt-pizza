@@ -138,26 +138,34 @@ test('franchise page', async ({ page }) => {
     await page.getByLabel('Global').getByRole('img').click();
     await page.getByText('JWT Pizza', { exact: true }).click();
     await page.getByRole('link', { name: 'home' }).click();
-})
+});
 
-// test('logout', async ({ page }) => {
-//     await page.goto('http://localhost:5173/');
-//     await page.getByRole('link', { name: 'Login' }).click();
-//     await page.getByPlaceholder('Email address').click();
-//     await page.getByPlaceholder('Email address').fill('joe@joe.com');
-//     await page.getByPlaceholder('Email address').press('Tab');
-//     await page.getByPlaceholder('Password').fill('joe');
-//     await page.getByPlaceholder('Password').press('Enter');
-//     // await expect(page.getByRole('link', { name: 'Logout' })).toBeVisible();
-//     await expect(page.locator('#navbar-dark')).toContainText('Logout');
-//     await page.getByRole('link', { name: 'Logout' }).click();
-//     await page.getByRole('link', { name: 'Login' }).click();
-//     await page.getByPlaceholder('Email address').fill('joe@joe.com');
-//     await page.getByPlaceholder('Email address').press('Tab');
-//     await page.getByPlaceholder('Password').fill('joe');
-//     await page.getByPlaceholder('Password').press('Enter');
-//     await page.getByRole('link', { name: 'Logout' }).click();
-// })
+test('logout', async ({ page }) => {
+    await page.route('*/**/api/auth', async (route) => {
+        const loginReq = { email: 'joe@joe.com', password: 'joe' };
+        const loginRes = { user: { id: 2, name: 'ingles', email: 'joe@joe.com', roles: [{ role: 'diner' }] } };
+        if (route.request().method() === 'PUT') {
+            expect(route.request().method()).toBe('PUT');
+            expect(route.request().postDataJSON()).toMatchObject(loginReq);
+            await route.fulfill({ json: loginRes });
+        }
+        else if (route.request().method() === 'DELETE') {
+            const logoutRes = { message: 'logout successful' };
+            expect(route.request().method()).toBe('DELETE');
+            await route.fulfill({ json: logoutRes });
+        }
+
+    });
+    await page.goto('http://localhost:5173/');
+    await expect(page.locator('#navbar-dark')).toContainText('Login');
+    await page.getByRole('link', { name: 'Login' }).click();
+    await page.getByPlaceholder('Email address').fill('joe@joe.com');
+    await page.getByPlaceholder('Password').click();
+    await page.getByPlaceholder('Password').fill('joe');
+    await page.getByRole('button', { name: 'Login' }).click();
+    await expect(page.locator('#navbar-dark')).toContainText('Logout');
+    await page.getByRole('link', { name: 'Logout' }).click();
+});
 
 test('failed login', async ({ page }) => {
     await page.goto('http://localhost:5173/');
@@ -170,8 +178,7 @@ test('failed login', async ({ page }) => {
     await page.getByPlaceholder('Email address').fill('admin@notadmin.com');
     await page.getByPlaceholder('Email address').press('Enter');
     await page.getByRole('button', { name: 'Login' }).click();
-    await page.getByRole('button', { name: 'Login' }).click();
-    // await expect(page.getByRole('main')).toContainText('{"code":404,"message":"unknown user"}');
+    await expect(page.getByRole('main')).toContainText('{"code":404,"message":"unknown user"}');
 })
 
 
@@ -210,6 +217,16 @@ test('special franchise screen', async ({ page }) => {
         expect(route.request().postDataJSON()).toMatchObject(storeReq);
         await route.fulfill({ json: storeRes });
     })
+
+    await page.goto('http://localhost:5173/');
+    await page.getByLabel('Global').getByRole('link', { name: 'Franchise' }).click();
+    await page.getByRole('link', { name: 'login', exact: true }).click();
+    await page.getByPlaceholder('Email address').click();
+    await page.getByPlaceholder('Email address').fill('j@jwt.com');
+    await page.getByPlaceholder('Password').click();
+    await page.getByPlaceholder('Password').fill('a');
+    await page.getByRole('button', { name: 'Login' }).click();
+
 });
 
 
@@ -218,3 +235,5 @@ test('fake page', async ({ page }) => {
     await expect(page.getByRole('main')).toContainText('It looks like we have dropped a pizza on the floor. Please try another page.');
     await expect(page.getByRole('heading')).toContainText('Oops');
 });
+
+// test('',)
