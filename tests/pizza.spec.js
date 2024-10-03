@@ -306,14 +306,60 @@ test('diner dash', async ({ page }) => {
         await route.fulfill({ json: loginResp });
     });
 
+
+    await page.route('*/**/api/order', async (route) => {
+        const orderResp = {
+            "dinerId": 4,
+            "orders": [
+                {
+                    "id": 1,
+                    "franchiseId": 1,
+                    "storeId": 1,
+                    "date": "2024-06-05T05:14:40.000Z",
+                    "items": [
+                        {
+                            "id": 1,
+                            "menuId": 1,
+                            "description": "Veggie",
+                            "price": 0.05
+                        }
+                    ]
+                }
+            ],
+            "page": 1
+        }
+        expect(route.request().method()).toBe('GET');
+        await route.fulfill({ json: orderResp });
+    });
+
     await page.goto('http://localhost:5173/');
     await page.getByRole('link', { name: 'Login' }).click();
     await page.getByPlaceholder('Email address').fill('joe@joe.com');
-    await page.getByPlaceholder('Email address').press('Tab');
+    await page.getByPlaceholder('Password').click();
     await page.getByPlaceholder('Password').fill('joe');
     await page.getByRole('button', { name: 'Login' }).click();
-    await expect(page.getByRole('link', { name: 'j' })).toBeVisible();
+    // await expect(page.getByRole('link', { name: 'j' })).toBeVisible();
     await page.getByRole('link', { name: 'j' }).click();
+    //commented out only work the first time :/, would need to recreate joe every time and probs not doing that
+    // await expect(page.getByText('name: joeemail: joe@joe.comrole: dinerHow have you lived this long without')).toBeVisible();
     await expect(page.getByRole('heading')).toContainText('Your pizza kitchen');
-
+    // await page.getByRole('link', { name: 'Buy one' }).click();
+    // await page.getByRole('link', { name: 'Image Description Veggie A' }).click();
+    // await page.getByRole('link', { name: 'Image Description Margarita' }).click();
+    // await page.getByRole('link', { name: 'Image Description Sandpaper' }).click();
+    // await page.getByRole('link', { name: 'Image Description Chared' }).click();
+    // await page.getByRole('combobox').selectOption('3');
+    // await page.getByRole('button', { name: 'Checkout' }).click();
+    // await page.getByRole('button', { name: 'Pay now' }).click();S
+    // await page.getByRole('button', { name: 'Verify' }).click();
+    // await page.getByRole('button', { name: 'Close' }).click();
+    // await page.getByRole('button', { name: 'Order more' }).click();
+    // await page.getByRole('link', { name: 'Image Description Pepperoni' }).click();
+    // await page.locator('#root div').filter({ hasText: 'choose' }).nth(4).click();
+    // await page.getByRole('combobox').selectOption('5');
+    // await page.getByRole('button', { name: 'Checkout' }).click();
+    // await page.getByRole('button', { name: 'Pay now' }).click();
+    await page.getByRole('link', { name: 'j' }).click();
+    await expect(page.getByRole('main')).toContainText('Here is your history of all the good times.');
+    await expect(page.getByRole('columnheader', { name: 'ID' })).toBeVisible();
 });
