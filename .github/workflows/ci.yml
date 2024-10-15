@@ -60,6 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       version: ${{needs.build.outputs.version}}
+    environment:
       name: production
       url: https://pizza.gojazz.click
 
