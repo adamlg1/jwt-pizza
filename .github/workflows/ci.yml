@@ -96,6 +96,8 @@ jobs:
       - build
       - deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       version: ${{needs.build.outputs.version}}
     steps:
