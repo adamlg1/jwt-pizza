@@ -15,12 +15,14 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
+    env: 
       version: ${{ github.event.inputs.version }}
     environment:
       name: production
       url: https://pizza.gojazz.click
     steps:
+      - name: echoing
+        run: echo ${{ github.event.inputs.version }}
       - name: Create OIDC token to AWS
         uses: aws-actions/configure-aws-credentials@v4
         with:
