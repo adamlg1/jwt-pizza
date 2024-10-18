@@ -55,6 +55,7 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 - Don't fall into the "I won't give up my code" trap. You should easily be able to have versioned changes saved and committed somewhere where they are easy to retrieve.
 - Some of the most satisfying work is deleting useless lines of code.
 - Keeping your codebase simpler will make it easier to maintain.
+- Only have minimal, clear API's. It seems like having too many of them confuses even Google.
 
 ### Necessary Mindset
 **Every line of code changed or added to a project creates the potential for introducing new defects and bugs**
