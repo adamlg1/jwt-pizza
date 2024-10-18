@@ -42,6 +42,9 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 - Again, not enough testing and you have embarrassing outages, privacy data leaks, or a number of other press-worthy events. Too much testing, and you might lose your market.
 - Remember, 100% coverage does not always equate to 100% confidence. 100% coverage is usually an indication that we should be concerned.
 
+### Error Budget
+- This is always good to have.
+
 ## Patterns
 - We have to be realistic. We need to have processes that are simple and do the job. That means they are good enough and don't take away too much time from innovation.
 - Always keep cost and opportunity costs at the back of your mind.
