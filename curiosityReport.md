@@ -1,5 +1,5 @@
 # Curiosity Report
-I made the mistake of accidentally having the back arrow hit by the mouse action in my first attempt of this assignment. I lost my entire writeup. This unfortunately increased my toil. I am going to work to avoid that by incrementally saving in this version.
+I made the mistake of accidentally having the back arrow hit by the mouse action in my first attempt of this assignment. I lost my entire writeup. Unfortunately, this mistake increased my toil. I am going to work to avoid that by incrementally saving in this version.
 ## Google's SRE
 I focused on Google's SRE principles initially. They seemed to be incredibly interesting and honest. I liked Google's focus on keeping their promises, and their honest approach to defining what was necessary to solve problems.
 ## Toil - Invent more, toil less
