@@ -38,13 +38,22 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 - If there are competitors in the marketplace, what level of service do those competitors provide?
 - Is this service targeted at consumers, or at enterprises?
 
-### TESTING
+### Testing
 - Again, not enough testing and you have embarrassing outages, privacy data leaks, or a number of other press-worthy events. Too much testing, and you might lose your market.
 - Remember, 100% coverage does not always equate to 100% confidence. 100% coverage is usually an indication that we should be concerned.
 
 ### Error Budget
 - This is always good to have.
 
+## Simplicity
+- Software systems are inherently unstable.
+- Our systems do not exist in a vacuum, and as a result cannot be perfectly stable.
+- "*If we stop changing the codebase, we stop introducing bugs. If the underlying hardware or libraries never change, neither of these components will introduce bugs. If we freeze the current user base, we’ll never have to scale the system. In fact, a good summary of the SRE approach to managing systems is: "At the end of the day, our job is to keep agility and stability in balance in the system."*
+- At the end of the day, our job is to keep agility and stability in balance in the system.
+- 
+
 ## Patterns
 - We have to be realistic. We need to have processes that are simple and do the job. That means they are good enough and don't take away too much time from innovation.
 - Always keep cost and opportunity costs at the back of your mind.
+- Life happens. We need to recognize that our processes are not always going to be perfect.
+- Find a balance/compromise.
