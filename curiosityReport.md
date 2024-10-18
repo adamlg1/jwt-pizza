@@ -50,10 +50,20 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 - Our systems do not exist in a vacuum, and as a result cannot be perfectly stable.
 - "*If we stop changing the codebase, we stop introducing bugs. If the underlying hardware or libraries never change, neither of these components will introduce bugs. If we freeze the current user base, we’ll never have to scale the system. In fact, a good summary of the SRE approach to managing systems is: "At the end of the day, our job is to keep agility and stability in balance in the system."*
 - At the end of the day, our job is to keep agility and stability in balance in the system.
-- 
+- Boring is actually good in software development.
+- Push back when accidental complexity is introduced.
+- Don't fall into the "I won't give up my code" trap. You should easily be able to have versioned changes saved and committed somewhere where they are easy to retrieve.
+- Some of the most satisfying work is deleting useless lines of code.
+- Keeping your codebase simpler will make it easier to maintain.
+
+### Necessary Mindset
+**Every line of code changed or added to a project creates the potential for introducing new defects and bugs**
+
 
 ## Patterns
 - We have to be realistic. We need to have processes that are simple and do the job. That means they are good enough and don't take away too much time from innovation.
 - Always keep cost and opportunity costs at the back of your mind.
 - Life happens. We need to recognize that our processes are not always going to be perfect.
 - Find a balance/compromise.
+- Boring can be good in software development, and help us to avoid making overly complex code.
+- Keep your codebase simple.
