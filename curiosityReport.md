@@ -75,3 +75,9 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 - Find a balance/compromise.
 - Boring can be good in software development, and help us to avoid making overly complex code.
 - Keep your codebase simple.
+
+  
+## Other Topics
+After reading through Google's SRE principles, there were still other topics that interested me. I started to dive into the current state of UI/UX testing, and how AI is used in monitoring systems. I would like to write a little bit about what I learned on those topics in this report as well. I hope I will be able to add to this report after I finish some more of the projects.
+
+I don't know how truthful this statement is, but I read that $1 invested into UI testing brings back $100 in return. The point being that it is valuable to perform UI testing.
