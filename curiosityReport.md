@@ -60,6 +60,13 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 ### Necessary Mindset
 **Every line of code changed or added to a project creates the potential for introducing new defects and bugs**
 
+## Testing for Reliability - *"If you haven't tried it, assume it's broken"*
+- Your responsibility is to quantify confidence.
+- Confidence is not only measured by past reliability, but also by future reliability.
+- Testing is a method we use to predict reliability.
+- Not something that happens once or twice, testing should be continuous.
+- Testing is one of the most valuable skills you can invest in as a software engineer.
+- You want a low mean time to repair.
 
 ## Patterns
 - We have to be realistic. We need to have processes that are simple and do the job. That means they are good enough and don't take away too much time from innovation.
