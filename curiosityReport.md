@@ -78,6 +78,8 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 
   
 ## Other Topics
-After reading through Google's SRE principles, there were still other topics that interested me. I started to dive into the current state of UI/UX testing, and how AI is used in monitoring systems. I would like to write a little bit about what I learned on those topics in this report as well. I hope I will be able to add to this report after I finish some more of the projects.
+After reading through Google's SRE principles, there were still other topics that interested me. I started to dive into the current state of UI/UX testing, and how AI is used in monitoring systems. I would like to write a little bit about what I learned on those topics in this report as well. I hope I will be able to add to this report after I finish some more of the projects. Regardless of if I make it to editing this report later, I will continue to read on the suggested curiosity topics that can be seen throughout this course.
 
-I don't know how truthful this statement is, but I read that $1 invested into UI testing brings back $100 in return. The point being that it is valuable to perform UI testing.
+I don't know how truthful this statement is, but I read that $1 invested into UI testing brings back $100 in return. The main point is that it is valuable to perform UI testing. The only problem is that UI testing can be difficult. One of the technologies that I was able to research was Percy. Percy uses AI to perform many of the UI tests that usually involve toil and pain when performed by us software developers. On their main webpage, one of my favorite quotes is "Stop wasting time and money on manual testing". I think that we need to think about the costs associated with manually testing UI. In the future, there will probably only be better frameworks that help us with testing our UI, that will lower cost and toil for many engineers.
+
+In addition to AI, there are no code testing frameworks, such as Selenium, Cypress, and Playwright. It appears that many of the testing frameworks that become extremely popular are the ones that are open-source. 
