@@ -19,3 +19,13 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 - "An alert that’s currently exceptionally rare and hard to automate might become frequent, perhaps even meriting a hacked-together script to resolve it. At this point, someone should find and eliminate the root causes of the problem; if such resolution isn’t possible, the alert response deserves to be fully automated."
 - Remember that problems that are currently rare may not be in the future. We need to find the root cause of our problems and reolve them.
 - Make your goals achievable, and keep rapid diagnosis at the top of your priorities.
+## Embracing Risk - Extreme reliability comes at a cost
+- Most users can't tell the difference between 99.9% reliability and 99% reliability.
+- The more time we spend in increasing reliability, the less time we can spend innovating.
+- Keep the idea of users not being able to tell the difference between 99.999 reliablity, and design with them in mind.
+- Make your system reliable enough, but no more reliable than it needs to be.
+- availability = uptime/(uptime + downtime)
+- Aggregate availability = successful requests/total requests
+
+## Patterns
+- We have to be realistic. We need to have processes that are simple and do the job. That means they are good enough and don't take away too much time from innovation.
