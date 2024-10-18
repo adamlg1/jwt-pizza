@@ -45,7 +45,7 @@ I focused on Google's SRE principles initially. They seemed to be incredibly int
 ### Error Budget
 - This is always good to have.
 
-## Simplicity
+## Simplicity - The prerequisite to reliability
 - Software systems are inherently unstable.
 - Our systems do not exist in a vacuum, and as a result cannot be perfectly stable.
 - "*If we stop changing the codebase, we stop introducing bugs. If the underlying hardware or libraries never change, neither of these components will introduce bugs. If we freeze the current user base, we’ll never have to scale the system. In fact, a good summary of the SRE approach to managing systems is: "At the end of the day, our job is to keep agility and stability in balance in the system."*
