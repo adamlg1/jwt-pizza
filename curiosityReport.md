@@ -96,3 +96,6 @@ Tools like PagerDuty also provide automated reports for helping the team find th
 
 It is interesting to note how many AI automation tools there are. When I researched throughout this project, there were many tools for nearly every aspect of the software development cycle.
 Deepgram had an article that I read to learn about the future of self-healing with AI. Here's the link - https://deepgram.com/ai-glossary/self-healing-ai. I found it interesting to learn about the approach and goals of AI use.
+
+## Final Conclusion
+The main thing I learned again in this project is the importance of incrementally committing your work to Github. I could have wasted a lot less time rewriting my SRE principles takeaway had I simply committed my work throughout. The second time around, I learned from my mistake, and committed in each section. There are mistakes like this that happen to developers all the time, and sometimes they don't end up sticking until they happen to you. I enjoyed being able to learn more about current topics in DevOps, and even subscribed to the superhuman newsletter to be able to keep up with the most recent developments in AI each week. It is a short read that is very interesting. 
