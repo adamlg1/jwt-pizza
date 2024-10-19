@@ -90,4 +90,9 @@ There are many cool features in UI testing like BrowserStack that allow us to te
 
 ### The use of AI in diagnosing issues and self-repair
 
-The final topic in this curiosity 
+The final topic in this curiosity report will be the use of AI in diagnosing issues and self-repairing our systems. Earlier in the semester, HP faced an attack on their system that was likely written by AI. One of the obvious reasons included every section of code having detailed comments. It looks like AI is not only being used to secure systems, but also to attack systems. As far as detecting anomolies in data, AI is good at detecting devaitions from the trend. Since it learns from past data, AI is able to view and learn how thresholds should currently be met, and alert us when they deviate too much. Dynatrace is a technology from this monitoring field that I have used throughout my classes, and it looks like Datadog and Splunk are other popular options.
+
+Tools like PagerDuty also provide automated reports for helping the team find the root source of the problem. A big example of auto-healing is in AWS, and their autoscaling feature. The main benefit to having AI help in diagnosing problems is that it can help reduce time wasted in toil. A big task in finding anomolies in the data is figuring out what is normal, and when we need to take action to fix those anomolies.
+
+It is interesting to note how many AI automation tools there are. When I researched throughout this project, there were many tools for nearly every aspect of the software development cycle.
+Deepgram had an article that I read to learn about the future of self-healing with AI. Here's the link - https://deepgram.com/ai-glossary/self-healing-ai. I found it interesting to learn about the approach and goals of AI use.
